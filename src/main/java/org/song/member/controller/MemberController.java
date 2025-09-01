@@ -5,7 +5,8 @@ import org.apache.coyote.BadRequestException;
 import org.song.globle.libs.Utils;
 import org.song.member.services.JoinService;
 import org.song.member.validator.JoinValidator;
-import org.springframework.validation.Errors;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,13 +21,15 @@ public class MemberController {
     private final Utils utils;
 
     @PostMapping("/join")
-    public void join(@RequestBody RequestJoin form, Errors errors){
+    public void join(@Validated @RequestBody RequestJoin form, BindingResult errors){
+        // 커스텀 validator 호출
         validator.process(form, errors);
 
-        if(errors.hasErrors()){
-            throw  new BadRequestException(utils.getMessage(errors));
+        if (errors.hasErrors()) {
+            throw new BadRequestException(utils.getErrorMessages(errors));
         }
+
+        // 실제 서비스 로직
         service.process(form);
-    }
 
 }

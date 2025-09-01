@@ -15,7 +15,7 @@ public class Utils {
     private final HttpServletRequest request;
     private final LocaleResolver resolver;
 
-    public String getMessage(String code){
+    public String getErrorMessages(String code) {
         Locale locale =  resolver.resolveLocale(request);
         return source.getMessage(code, null, locale);
     }
