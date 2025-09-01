@@ -1,2 +1,10 @@
 server:
   port: 5000
+
+  # 테이터 베이스
+  detasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${db.url}
+    username: ${db.username}
+    password: ${db.password}231
+
