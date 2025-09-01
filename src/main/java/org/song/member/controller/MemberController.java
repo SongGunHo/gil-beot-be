@@ -32,4 +32,4 @@ public class MemberController {
         // 실제 서비스 로직
         service.process(form);
 
-}
+}}

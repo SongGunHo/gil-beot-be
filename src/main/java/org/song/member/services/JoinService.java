@@ -21,6 +21,5 @@ public class JoinService {
 
     public void process(RequestJoin form){
         Member member = mapper.map(form, Member.class);
-        String password = form.get
     }
 }
